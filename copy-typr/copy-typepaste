@@ -1,0 +1,41 @@
+"""
+This script types the text from the clipboard when the ` key is pressed.
+It uses the pyperclip library to access the clipboard and the keyboard library to simulate typing.
+"""
+
+import time
+import pyperclip
+import keyboard
+
+type_delay = 0.0005  # Delay between typing each character1
+
+
+def type_from_clipboard():
+    keyboard.write("\b")  # backspace
+
+    text = pyperclip.paste()  # Get text from clipboard
+    if not text:
+        print("Clipboard is empty.")
+        return
+    text = text.replace("\t", "")
+    print(f"Typing: {text}")
+    time.sleep(2)
+
+    for char in text:
+        keyboard.write(char)
+        time.sleep(type_delay)  # type speed
+
+
+def type_text(text):
+    text = text.replace("\t", "")
+    print(f"Typing: {text}")
+    time.sleep(2)
+
+    for char in text:
+        keyboard.write(char)
+        time.sleep(type_delay)
+
+
+keyboard.add_hotkey("`", type_from_clipboard)
+while True:
+    time.sleep(0.01)
