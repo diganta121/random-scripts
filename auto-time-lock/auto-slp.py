@@ -1,9 +1,8 @@
 import os
 import time
+import datetime
 
 prev = datetime.datetime.now()
-
-exec()
 
 try:
     n = int(eval(input("expressions for number of seconds (-ve to -s): \n>>: ")))
